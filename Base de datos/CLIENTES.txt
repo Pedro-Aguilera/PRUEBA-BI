@@ -1,0 +1,40 @@
+-- Create table
+create table CLIENTES
+(
+  codigo_cliente     NUMBER(10) not null,
+  nombre_cliente     VARCHAR2(100) not null,
+  tipo_persona       VARCHAR2(10) not null,
+  cod_genero         VARCHAR2(1),
+  fecha_nacimiento   DATE,
+  localidad          VARCHAR2(100),
+  fecha_alta_cliente DATE
+)
+tablespace CC_DATA
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table CLIENTES
+  add constraint PK_CODIGO_CLIENTE primary key (CODIGO_CLIENTE)
+  using index 
+  tablespace SYSTEM
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table CLIENTES
+  add constraint FK_COD_GENERO foreign key (COD_GENERO)
+  references GENERO (COD_GENERO);

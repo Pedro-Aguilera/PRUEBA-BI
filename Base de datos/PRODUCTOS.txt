@@ -1,0 +1,30 @@
+-- Create table
+create table PRODUCTOS
+(
+  operacion        VARCHAR2(16) not null,
+  codigo_cliente   NUMBER(10),
+  cod_moneda       VARCHAR2(3),
+  tipo_cartera     VARCHAR2(30),
+  saldo_capital    NUMBER(18),
+  saldo_interes    NUMBER(18),
+  fecha_proceso    DATE,
+  fecha_vencimiento DATE
+)
+tablespace BS_DATA
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 16K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table PRODUCTOS
+  add constraint FK_COD_CLIENTE foreign key (CODIGO_CLIENTE)
+  references CLIENTES (CODIGO_CLIENTE);
+alter table PRODUCTOS
+  add constraint FK_COD_MONEDA foreign key (COD_MONEDA)
+  references MONEDA (COD_MONEDA);

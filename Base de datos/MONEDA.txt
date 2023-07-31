@@ -1,0 +1,33 @@
+-- Create table
+create table MONEDA
+(
+  cod_moneda  VARCHAR2(3) not null,
+  descripcion VARCHAR2(30),
+  cotizacion  NUMBER(18)
+)
+tablespace BS_DATA
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 16K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table MONEDA
+  add constraint PK_COD_MONEDA primary key (COD_MONEDA)
+  using index 
+  tablespace SYSTEM
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
